@@ -125,6 +125,11 @@ def test_gradient_descent_multi(x_train, y_train):
       print("\033[92mAll tests passed!")
 
 
+data = pd.read_csv('data/games-data.csv')
+data = cleanData(data)
+print(data["score"])
+print(data["user score"])
+
 #First Part, Linear Regression
 print("First Part, Linear Regression")
 #TO-DO the main program.

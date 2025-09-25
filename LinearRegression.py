@@ -13,7 +13,10 @@ class LinearReg:
     """
     def __init__(self, x, y,w,b):
         #(scalar): Parameters of the model
-        return #delete this return
+        self.x = x
+        self.y = y
+        self.w = w
+        self.b = b
 
     """
     Computes the linear regression function.
@@ -36,7 +39,17 @@ class LinearReg:
                to fit the data points in x and y
     """
     def compute_cost(self):
-        return 0
+        yp = [self.f_w_b(e) for e in self.x]
+
+        ys = np.subtract(self.y,yp)
+
+        ys = ys**2
+
+        dev = ys.sum()
+
+        dev = (1/(2*yp.count())) * dev
+
+        return dev
     
 
     """

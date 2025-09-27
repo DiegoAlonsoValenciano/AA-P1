@@ -61,7 +61,27 @@ class LinearReg:
       dj_db (scalar): The gradient of the cost w.r.t. the parameter b     
      """
     def compute_gradient(self):
-        return 0, 0
+        yp = [self.f_w_b(e) for e in self.x]
+
+        ys = np.subtract(yp,self.y)
+
+        ysp = ys
+
+        ys = np.multiply(ys,self.x)
+
+        dj_dw = ys.sum()
+
+        dj_db = ysp.sum()
+
+        dj_dw = (1/yp.count())*dj_dw
+
+        dj_db = (1/yp.count())*dj_db
+
+        return dj_dw, dj_db
+
+
+
+        
     
     
     """
@@ -88,6 +108,20 @@ class LinearReg:
         w_initial = copy.deepcopy(self.w)  # avoid modifying global w within function
         b_initial = copy.deepcopy(self.b)  # avoid modifying global w within function
         #TODO: gradient descent iteration by m examples.
+        
+        for i in range(0,num_iters):
+
+            j = self.compute_cost()
+            J_history.append(j)
+
+            resW,resB = self.compute_gradient()
+
+            self.w = self.w - alpha*resW
+
+            self.b = self.b - alpha*resB
+
+            w_history.append(self.w)
+
         return self.w, self.b, J_history, w_initial, b_initial
 
 

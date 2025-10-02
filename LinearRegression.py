@@ -39,7 +39,7 @@ class LinearReg:
                to fit the data points in x and y
     """
     def compute_cost(self):
-        yp = [self.f_w_b(e) for e in self.x]
+        yp = self.f_w_b(self.x)
 
         ys = np.subtract(self.y,yp)
 
@@ -47,7 +47,7 @@ class LinearReg:
 
         dev = ys.sum()
 
-        dev = (1/(2*yp.count())) * dev
+        dev = (1/(2*np.size(yp))) * dev
 
         return dev
     
@@ -73,9 +73,9 @@ class LinearReg:
 
         dj_db = ysp.sum()
 
-        dj_dw = (1/yp.count())*dj_dw
+        dj_dw = (1/np.size(yp))*dj_dw
 
-        dj_db = (1/yp.count())*dj_db
+        dj_db = (1/np.size(yp))*dj_db
 
         return dj_dw, dj_db
 

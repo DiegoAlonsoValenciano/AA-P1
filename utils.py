@@ -29,7 +29,7 @@ def load_data_csv(path,x_colum,y_colum):
 def zscore_normalize_features(X):
     """
     computes  X, zcore normalized by column
-
+    
     Args:
       X (ndarray (m,n))     : input data, m examples, n features
 
@@ -44,7 +44,14 @@ def zscore_normalize_features(X):
     # sigma will have shape (n,)
     # element-wise, subtract mu for that column from each example,
     # divide by std for that column
-    return 0, 0, 0
+    mu = np.mean(X, axis=1)
+    sigma = np.std(X, axis=1)
+    x1 = (X[0]-mu[0])/sigma[0]
+    x2 = (X[1]-mu[1])/sigma[1]
+    x3 = (X[2]-mu[2])/sigma[2]
+    X_norm = np.append([x1,x2],[x3],axis=0)
+   
+    return X_norm, mu, sigma
 
 def load_data_csv_multi(path,x1_colum,x2_colum,x3_colum,y_colum):
     data = pd.read_csv(path)

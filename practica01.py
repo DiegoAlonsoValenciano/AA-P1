@@ -126,16 +126,24 @@ def test_gradient_descent_multi(x_train, y_train):
 
 
 data = pd.read_csv('data/games-data.csv')
-data = cleanData(data)
-print(data["score"])
-print(data["user score"])
+#data = cleanDataMulti(data)
+data =cleanData(data)
+x_train = np.array(data["score"])
+y_train = np.array(data["user score"])
 
 #First Part, Linear Regression
 print("First Part, Linear Regression")
 #TO-DO the main program.
 #test_cost_one(x_train, y_train)
 #test_gradient_one(x_train, y_train)
+#w,b = run_gradient_descent_one(x_train,y_train)
 #test_gradient_descent_one(x_train, y_train,w,b)
+
+data = cleanDataMulti(data)
+
+X = np.append([data["score"],data["critics"]],[data["users"]],axis=0)
+
+x,m,d = zscore_normalize_features(X)
 
 
 #Second Part, Linear Regression Multivariable

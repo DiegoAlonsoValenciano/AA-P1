@@ -127,24 +127,31 @@ def test_gradient_descent_multi(x_train, y_train):
 
 data = pd.read_csv('data/games-data.csv')
 #data = cleanDataMulti(data)
-data =cleanData(data)
+data = cleanDataMulti(data)
 x_train = np.array(data["score"])
 y_train = np.array(data["user score"])
 
 #First Part, Linear Regression
 print("First Part, Linear Regression")
 #TO-DO the main program.
-#test_cost_one(x_train, y_train)
-#test_gradient_one(x_train, y_train)
-#w,b = run_gradient_descent_one(x_train,y_train)
-#test_gradient_descent_one(x_train, y_train,w,b)
+test_cost_one(x_train, y_train)
+test_gradient_one(x_train, y_train)
+w,b = run_gradient_descent_one(x_train,y_train)
+test_gradient_descent_one(x_train, y_train,w,b)
 
-data = cleanDataMulti(data)
 
-X = np.append([data["score"],data["critics"]],[data["users"]],axis=0)
+#X = np.append([data["score"],data["critics"]],[data["users"]],axis=0)
 
-x,m,d = zscore_normalize_features(X)
+#x,m,d = zscore_normalize_features(X)
 
+#w = np.array([1,1,1])
+#w = np.transpose(w)
+
+#lr = LinearRegMulti(x,y_train,w,1,0)
+
+#s = lr.gradient_descent(1,5)
+
+#print(s)
 
 #Second Part, Linear Regression Multivariable
 print("Second Part, Linear Regression Multivariable")

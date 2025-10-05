@@ -50,6 +50,8 @@ def zscore_normalize_features(X):
     x2 = (X[1]-mu[1])/sigma[1]
     x3 = (X[2]-mu[2])/sigma[2]
     X_norm = np.append([x1,x2],[x3],axis=0)
+
+    X_norm = np.transpose(X_norm)
    
     return X_norm, mu, sigma
 

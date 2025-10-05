@@ -67,7 +67,7 @@ class LinearReg:
 
         ysp = ys
 
-        ys = np.multiply(ys,self.x)
+        ys = ys @ self.x
 
         dj_dw = ys.sum()
 

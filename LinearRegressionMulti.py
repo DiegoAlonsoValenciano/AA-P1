@@ -34,7 +34,13 @@ class LinearRegMulti(LinearReg):
     """
     
     def _regularizationL2Cost(self):
-        return 0
+
+        w2 = self.w **2
+
+        su = np.sum(w2)
+
+        L2 = (self.lambda_/(2*np.size(self.y)))*su
+        return L2
     
     """
     Compute the regularization gradient (is private method: start with _ )
@@ -45,9 +51,19 @@ class LinearRegMulti(LinearReg):
     """ 
     
     def _regularizationL2Gradient(self):
-        return 0
 
+        L2 = (self.lambda_/np.size(self.y)) * self.w
+        return L2
+
+    def compute_cost(self):
+        dev =super().compute_cost()
+        return dev + self._regularizationL2Cost()
     
+    def compute_gradient(self):
+        dj_dw, dj_db = super().compute_gradient()
+        dj_dw = np.add(dj_dw, self._regularizationL2Gradient())
+        return dj_dw, dj_db
+
 def cost_test_multi_obj(x,y,w_init,b_init):
     lr = LinearRegMulti(x,y,w_init,b_init,0)
     cost = lr.compute_cost()

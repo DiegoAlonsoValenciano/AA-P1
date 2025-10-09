@@ -61,17 +61,13 @@ class LinearReg:
       dj_db (scalar): The gradient of the cost w.r.t. the parameter b     
      """
     def compute_gradient(self):
-        yp = [self.f_w_b(e) for e in self.x]
+        yp = self.f_w_b(self.x)
 
         ys = np.subtract(yp,self.y)
 
-        ysp = ys
+        dj_dw = self._DJ_DW(ys)
 
-        ys = ys @ self.x
-
-        dj_dw = ys.sum()
-
-        dj_db = ysp.sum()
+        dj_db = ys.sum()
 
         dj_dw = (1/np.size(yp))*dj_dw
 
@@ -80,7 +76,11 @@ class LinearReg:
         return dj_dw, dj_db
 
 
+    def _DJ_DW(self,ys):
+        ys = ys @ self.x
 
+        dj_dw = ys.sum()
+        return dj_dw
         
     
     

@@ -63,6 +63,11 @@ class LinearRegMulti(LinearReg):
         dj_dw, dj_db = super().compute_gradient()
         dj_dw = np.add(dj_dw, self._regularizationL2Gradient())
         return dj_dw, dj_db
+    
+    def _DJ_DW(self,ys):
+        dj_dw = ys @ self.x
+
+        return dj_dw
 
 def cost_test_multi_obj(x,y,w_init,b_init):
     lr = LinearRegMulti(x,y,w_init,b_init,0)

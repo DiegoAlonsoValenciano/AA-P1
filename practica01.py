@@ -134,10 +134,10 @@ y_train = np.array(data["user score"])
 #First Part, Linear Regression
 print("First Part, Linear Regression")
 #TO-DO the main program.
-#test_cost_one(x_train, y_train)
-#test_gradient_one(x_train, y_train)
-#w,b = run_gradient_descent_one(x_train,y_train)
-#test_gradient_descent_one(x_train, y_train,w,b)
+test_cost_one(x_train, y_train)
+test_gradient_one(x_train, y_train)
+w,b = run_gradient_descent_one(x_train,y_train)
+test_gradient_descent_one(x_train, y_train,w,b)
 
 
 X = np.append([data["score"],data["critics"]],[data["users"]],axis=0)
